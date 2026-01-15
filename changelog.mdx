@@ -1,0 +1,134 @@
+---
+title: Changelog
+description: Track the latest updates, improvements, and bug fixes in Francisco Pina Comendador to stay informed on new features.
+---
+
+## Recent Updates
+
+Stay current with the latest releases of Francisco Pina Comendador. Review changes below to understand new capabilities, fixes, and any required actions for your setup.
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- Added real-time collaboration support for shared documentation spaces
+- Introduced customizable themes with brand color integration (`#3B82F6` by default)
+
+## Improvements
+
+- Enhanced search functionality with fuzzy matching for better results
+
+## Bug Fixes
+
+- Fixed rendering issues with nested lists in MDX components
+- Resolved authentication token refresh errors during long sessions
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Integrated API documentation components like `<ParamField>` and `<ResponseField>`
+- Added support for Mermaid diagrams via code blocks (no JSX component needed)
+
+## Improvements
+
+- Optimized page load times by 40% with lazy-loading images and components
+- Improved accessibility with better alt text handling and keyboard navigation
+
+## Bug Fixes
+
+- Corrected parsing errors from unescaped special characters in prose (`{`, `}`, `<`, `>`)
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["breaking", "feature"]}>
+
+## New Features
+
+- Launched core MDX documentation system with YAML frontmatter and JSX components
+- Enabled 15+ components including `<Steps>`, `<Tabs>`, `<Callout>`, and `<CodeGroup>`
+
+## Breaking Changes
+
+- Removed legacy H1 headings; all pages now require H2 as first body heading
+- Updated attribute syntax to require double quotes for strings (e.g., `title="Text"`)
+
+## Initial Setup
+
+- Basic authentication via `YOUR_API_KEY`
+- Dashboard access at `https://dashboard.example.com`
+
+</Update>
+
+## How to Upgrade
+
+Upgrading Francisco Pina Comendador keeps your documentation space secure and feature-rich. Follow these steps to update smoothly.
+
+<Callout kind="info">
+Before upgrading, back up your current configuration and review breaking changes in the latest release notes above.
+</Callout>
+
+<Steps>
+  <Step title="Check Compatibility" icon="check-circle">
+
+Review your current version against the changelog. Ensure no deprecated components like `<Mermaid>` (use code blocks instead).
+
+  </Step>
+  <Step title="Update Package" icon="download">
+```bash
+npm install francisco-pina-comendador@latest
+```
+Or use Yarn:
+````bash
+yarn add francisco-pina-comendador@latest
+````
+  </Step>
+  <Step title="Run Migration" icon="settings">
+
+Execute the migration script:
+
+<CodeGroup tabs="JavaScript,Python">
+```javascript
+// migration.js
+const { migrateDocs } = require('francisco-pina-comendador');
+migrateDocs({ from: 'v1.1.0', to: 'v1.2.0' });
+```
+```python
+# migration.py
+from francisco_pina_comendador import migrate_docs
+migrate_docs(from_version='v1.1.0', to_version='v1.2.0')
+```
+</CodeGroup>
+
+  </Step>
+  <Step title="Test Changes" icon="play-circle">
+
+Verify key pages like `/introduction` and `/quickstart`. Check for parsing errors from unescaped `{` or `<`.
+
+  </Step>
+</Steps>
+
+## Quick Links
+
+<Columns cols={3}>
+  <Card title="Introduction" icon="book-open" href="/introduction">
+    Get started with the basics.
+  </Card>
+  <Card title="Quickstart" icon="zap" href="/quickstart">
+    Set up in minutes.
+  </Card>
+  <Card title="Authentication" icon="shield" href="/authentication">
+    Secure your space.
+  </Card>
+</Columns>
+
+<Expandable title="Deprecations and Known Issues" default-open="false">
+
+- **Deprecated:** Single quotes in JSX attributes (use double quotes only)
+- **Known Issue:** Nested 3-backtick code blocks may parse incorrectly; always use 4 backticks inside components
+
+For full details, visit the [GitHub issues page](https://github.com/example/francisco-pina-comendador/issues).
+
+</Expandable>

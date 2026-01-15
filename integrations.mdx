@@ -1,0 +1,192 @@
+---
+title: Integrations and Extensions
+description: Connect Francisco Pina Comendador with third-party tools to enhance your documentation workflow and automate processes.
+---
+
+## Overview
+
+Francisco Pina Comendador supports seamless integrations with popular third-party services. You can automate notifications, sync content from repositories, and embed dynamic elements from external sources. These integrations extend your documentation capabilities without custom development.
+
+Use webhooks for real-time updates, connect via API for advanced workflows, or embed content directly into pages. Follow the sections below to get started.
+
+<Callout kind="tip">
+  Review your plan limits in the dashboard at `https://dashboard.example.com/account` before enabling premium integrations like Zapier.
+</Callout>
+
+## Supported Integrations
+
+Francisco Pina Comendador integrates with essential tools for documentation teams. Choose from these ready-to-use connections.
+
+<Columns cols={3}>
+  <Card title="Slack" icon="message-circle" href="https://slack.com" target="_blank">
+    Send notifications for page updates, new comments, or publish events.
+  </Card>
+  <Card title="GitHub" icon="github" href="https://github.com" target="_blank">
+    Sync repositories, auto-publish changelogs, and trigger builds on edits.
+  </Card>
+  <Card title="Zapier" icon="zap" href="https://zapier.com" target="_blank">
+    Build no-code automations with 5000+ apps for custom workflows.
+  </Card>
+</Columns>
+
+<Columns cols={2}>
+  <Card title="Google Analytics" icon="trending-up" href="https://analytics.google.com" target="_blank">
+    Track page views and user engagement directly in your docs.
+  </Card>
+  <Card title="Notion" icon="edit-3" href="https://notion.so" target="_blank">
+    Import and mirror Notion pages for hybrid documentation.
+  </Card>
+</Columns>
+
+## Setting Up Webhooks
+
+Webhooks notify external services of events like page publishes or comments. You configure them in your dashboard.
+
+<Steps>
+  <Step title="Navigate to Integrations" icon="settings">
+    Go to `https://dashboard.example.com/integrations/webhooks` and click "New Webhook".
+  </Step>
+  <Step title="Configure Endpoint" icon="link">
+    Enter your target URL, such as `https://your-webhook-url.com/docs-events`, and select events (e.g., `page.updated`).
+  </Step>
+  <Step title="Test Delivery" icon="play">
+    Click "Send Test Payload" to verify. Check your endpoint logs for the sample event.
+  </Step>
+</Steps>
+
+Verify webhook payloads using this example:
+
+<CodeGroup tabs="cURL,JavaScript">
+  ```bash
+  curl -X POST https://your-webhook-url.com/docs-events \
+    -H "Content-Type: application/json" \
+    -d '{
+      "event": "page.updated",
+      "page_id": "doc-123",
+      "timestamp": "2024-01-15T10:30:00Z"
+    }'
+  ```
+  ```javascript
+  const payload = {
+    event: 'page.updated',
+    page_id: 'doc-123',
+    timestamp: new Date().toISOString()
+  };
+
+  fetch('https://your-webhook-url.com/docs-events', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  ```
+</CodeGroup>
+
+## API Connections for Custom Workflows
+
+Build advanced automations using the REST API at `https://api.example.com/v1`. Authenticate with `YOUR_API_KEY`.
+
+<ParamField header="Authorization" param-type="string" required="true">
+  Bearer token: `Bearer YOUR_API_KEY`
+</ParamField>
+
+<ParamField query="event" param-type="string" required="false">
+  Filter by event type, e.g., `page.updated`.
+</ParamField>
+
+Example: Fetch recent events programmatically.
+
+<Request tabs="JavaScript,cURL">
+  ```javascript
+  const response = await fetch('https://api.example.com/v1/events?limit=10', {
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY'
+    }
+  });
+  const events = await response.json();
+  console.log(events);
+  ```
+  ```bash
+  curl "https://api.example.com/v1/events?limit=10" \
+    -H "Authorization: Bearer YOUR_API_KEY"
+  ```
+</Request>
+
+<Response tabs="200">
+  ```json
+  {
+    "events": [
+      {
+        "id": "evt_001",
+        "type": "page.updated",
+        "page_id": "doc-123",
+        "timestamp": "2024-01-15T10:30:00Z"
+      }
+    ]
+  }
+  ```
+</Response>
+
+## Embedding External Content
+
+Embed live content from third-party services to keep your docs dynamic.
+
+<Tabs>
+  <Tab title="GitHub Gist" icon="code">
+    Use this Markdown syntax:
+    
+    ````
+    ```gist
+    https://gist.github.com/user/abc123
+    ```
+    ````
+    
+    Supports syntax highlighting for code snippets.
+  </Tab>
+  <Tab title="YouTube Video" icon="play-circle">
+    Embed videos with:
+    
+    ````
+    <Video src="https://youtube.com/embed/VIDEO_ID" title="Tutorial Video" width="560" height="315" />
+    ````
+  </Tab>
+  <Tab title="Figma Prototype" icon="figma">
+    Add interactive prototypes:
+    
+    ````
+    <Iframe src="https://www.figma.com/embed?embed_host=share&url=FIGMA_URL" title="Prototype" width="100%" height="500" />
+    ````
+  </Tab>
+</Tabs>
+
+## Troubleshooting Integration Issues
+
+Common problems and fixes:
+
+<ExpandableGroup>
+  <Expandable title="Webhook deliveries failing (401 Unauthorized)" default-open="true">
+    Verify your endpoint accepts POST requests with JSON payloads. Check server logs for auth mismatches. Regenerate your secret in dashboard if needed.
+  </Expandable>
+  <Expandable title="API rate limits exceeded">
+    API limits are 1000 requests per hour. Implement exponential backoff in your code:
+    
+    ````javascript
+    async function retryRequest(url, maxRetries = 3) {
+      for (let i = 0; i < maxRetries; i++) {
+        try {
+          const response = await fetch(url);
+          if (response.ok) return response;
+        } catch (error) {
+          await new Promise(resolve => setTimeout(resolve, 2 ** i * 1000));
+        }
+      }
+    }
+    ````
+  </Expandable>
+  <Expandable title="Embed not rendering">
+    Ensure external service allows embedding (check CSP headers). Test in an incognito window.
+  </Expandable>
+</ExpandableGroup>
+
+<Callout kind="alert">
+  Contact support at `support@example.com` for persistent issues, including your integration logs.
+</Callout>

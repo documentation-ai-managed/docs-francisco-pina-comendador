@@ -1,0 +1,147 @@
+---
+title: Getting Started with Francisco Pina Comendador
+description: Set up your account and create your first documentation space in just a few minutes to begin organizing your projects.
+---
+
+## Prerequisites
+
+Before you begin, ensure you have the following ready:
+
+<Callout kind="info">
+
+- A valid email address for registration
+- A modern web browser like Chrome or Firefox
+- Optional: Your project files ready for upload (Markdown, images, or PDFs up to 10MB each)
+
+</Callout>
+
+Review these to avoid delays during setup.
+
+## Create Your Account
+
+Sign up quickly to access your documentation space.
+
+<Steps>
+  <Step title="Visit the Dashboard" icon="globe">
+    Open your browser and navigate to `https://franciscopinacomendador.com/app`.
+
+    Click **Sign Up** in the top-right corner.
+  </Step>
+  <Step title="Register" icon="user-plus">
+    Enter your email, create a strong password, and complete the CAPTCHA.
+
+    Verify your email by clicking the link sent to your inbox.
+  </Step>
+  <Step title="Log In" icon="log-in">
+    Return to the dashboard, enter your credentials, and click **Log In**.
+
+    You'll land on the main dashboard.
+  </Step>
+</Steps>
+
+## Create Your First Documentation Space
+
+Organize your projects by creating a dedicated space.
+
+<Steps>
+  <Step title="New Space" icon="plus">
+    From the dashboard, click **New Space** or the `+` icon.
+  </Step>
+  <Step title="Configure Space" icon="settings">
+    Name it (e.g., "My Project Docs"), add a description like "Central hub for project notes", and select visibility: public, private, or team-shared.
+  </Step>
+  <Step title="Save and Enter" icon="check-circle">
+    Click **Create**. You'll enter the space editor with a blank page ready for content.
+  </Step>
+</Steps>
+
+## Upload Your Initial Project Files
+
+Add your project files to populate the space.
+
+<Tabs>
+  <Tab title="Drag & Drop" icon="upload">
+    Open your space editor.
+
+    Drag files from your desktop directly into the file panel on the left sidebar.
+
+    Supported formats include `.md`, `.png`, `.pdf`. Files appear instantly with previews.
+  </Tab>
+  <Tab title="API Upload" icon="code">
+    Use the upload API for automation.
+
+    <CodeGroup tabs="cURL,JavaScript">
+      ````bash
+      curl -X POST https://franciscopinacomendador.com/api/v1/spaces/YOUR_SPACE_ID/files \
+        -H "Authorization: Bearer YOUR_TOKEN" \
+        -F "file=@/path/to/project.md"
+      ````
+
+      ````javascript
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+
+      fetch('https://franciscopinacomendador.com/api/v1/spaces/YOUR_SPACE_ID/files', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer YOUR_TOKEN' },
+        body: formData
+      });
+      ````
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+<ParamField path="space_id" param-type="string" required="true">
+  Unique identifier for your documentation space (found in space settings).
+</ParamField>
+
+<ParamField header="Authorization" param-type="string" required="true">
+  Bearer token from your account settings.
+</ParamField>
+
+## Basic Interface Tour
+
+Familiarize yourself with the key areas.
+
+<Columns cols={3}>
+  <Card title="Sidebar" icon="menu" href="#sidebar">
+    Navigate spaces, files, and search content.
+  </Card>
+  <Card title="Editor" icon="edit-3" href="#editor">
+    Write Markdown with live preview and MDX components.
+  </Card>
+  <Card title="Preview" icon="eye" href="#preview">
+    Real-time rendering of your documentation.
+  </Card>
+</Columns>
+
+## Common Setup Pitfalls to Avoid
+
+Steer clear of these frequent issues.
+
+<Callout kind="alert">
+  - Forgetting email verification blocks login—check spam folders.
+  - Uploading files >10MB fails silently; resize images first.
+  - Using unsupported formats like `.docx`; convert to PDF or Markdown.
+</Callout>
+
+<Expandable title="Advanced Troubleshooting" default-open="false">
+
+If uploads fail, verify your `YOUR_TOKEN` hasn't expired. Regenerate in account settings.
+
+For browser issues, clear cache or try incognito mode.
+
+</Expandable>
+
+## Next Steps
+
+<Columns cols={2}>
+  <Card title="Learn Markdown Basics" icon="book-open" href="/introduction">
+    Master formatting for rich docs.
+  </Card>
+  <Card title="Set Up Authentication" icon="shield" href="/authentication">
+    Secure your spaces with teams.
+  </Card>
+</Columns>
+
+You're now ready to organize projects efficiently with Francisco Pina Comendador. Explore your space and build out documentation.

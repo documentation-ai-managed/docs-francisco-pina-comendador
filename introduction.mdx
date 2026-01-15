@@ -1,0 +1,108 @@
+---
+title: Introduction to Francisco Pina Comendador
+description: Overview of Francisco Pina Comendador, a documentation management platform designed to organize and streamline project documentation with ease.
+---
+
+## Overview
+
+Francisco Pina Comendador lets you create, organize, and manage project documentation in one centralized space. You build structured docs with Markdown and MDX support, collaborate with your team in real-time, and customize everything to match your brand. Designed for developers and teams, it simplifies documentation workflows so you focus on your projects.
+
+<Callout kind="info">
+Francisco Pina Comendador targets developers, engineering teams, and project managers who need scalable documentation without the hassle of wikis or static sites.
+</Callout>
+
+## Key Features
+
+Discover the core capabilities that make Francisco Pina Comendador your go-to documentation platform.
+
+<Columns cols={3}>
+  <Card title="Effortless Organization" icon="folder-tree" href="/docs/organization">
+    Structure your docs with nested pages, search, and tags. Navigate complex projects easily.
+  </Card>
+  <Card title="Real-time Collaboration" icon="users" href="/docs/collaboration">
+    Edit docs together, add comments, and track changes live with your team.
+  </Card>
+  <Card title="Custom Branding" icon="palette" href="/docs/branding">
+    Apply your brand colors like `#3B82F6` and logos across all documentation spaces.
+  </Card>
+</Columns>
+
+## Quick Start
+
+Get up and running in minutes. Follow these steps to create your first documentation space.
+
+<Steps>
+  <Step title="Sign Up" icon="user-plus">
+    Visit `https://franciscopinacomendador.com` and create your account with email or GitHub.
+  </Step>
+  <Step title="Create a Space" icon="plus">
+    Click "New Space" and name it for your project, like "API Docs".
+  </Step>
+  <Step title="Add Your First Doc" icon="file-text">
+    Start with a blank MDX page or import from Markdown. Use components like `<Callout>` for highlights.
+  </Step>
+  <Step title="Publish and Share" icon="share-2">
+    Make it public or invite team members. Embed via iframe on your site.
+  </Step>
+</Steps>
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+  // Embed Francisco Pina Comendador docs in your app
+  const embedUrl = 'https://franciscopinacomendador.com/spaces/your-space/embed';
+  iframe.src = embedUrl;
+  ```
+  ```python
+  # Fetch latest docs via API
+  import requests
+  response = requests.get('https://api.franciscopinacomendador.com/spaces/your-space/docs')
+  docs = response.json()
+  ```
+</CodeGroup>
+
+## Brand Guidelines
+
+Follow these guidelines to maintain consistency across your documentation.
+
+<Expandable title="Primary Brand Color" default-open="true">
+  Use the primary blue `#3B82F6` for headers, links, and accents.
+
+  ```css
+  :root {
+    --brand-primary: #3B82F6;
+  }
+
+  a {
+    color: var(--brand-primary);
+  }
+  ```
+
+  Pair it with neutrals: white (`#FFFFFF`), dark gray (`#1F2937`), and light gray (`#F3F4F6`).
+</Expandable>
+
+<Expandable title="Logo and Typography">
+  Download the logo from your dashboard. Use sans-serif fonts like Inter or system defaults for readability.
+</Expandable>
+
+## Next Steps
+
+Ready to dive deeper? Explore these resources.
+
+<Columns cols={2}>
+  <Card title="Quickstart Guide" icon="zap" href="/quickstart">
+    Complete setup in under 5 minutes.
+  </Card>
+  <Card title="Authentication" icon="lock" href="/authentication">
+    Secure your spaces with API keys and OAuth.
+  </Card>
+  <Card title="Advanced Features" icon="settings" href="/features">
+    Dive into custom components and integrations.
+  </Card>
+  <Card title="Changelog" icon="git-branch" href="/changelog">
+    Stay updated with the latest releases.
+  </Card>
+</Columns>
+
+<Callout kind="tip">
+  Start with the Quickstart Guide to build your first space. Customize with brand color `#3B82F6` right away.
+</Callout>

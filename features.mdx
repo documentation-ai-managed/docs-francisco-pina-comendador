@@ -1,0 +1,140 @@
+---
+title: Core Features of Francisco Pina Comendador
+description: Explore the essential tools and capabilities for managing and collaborating on project documentation effectively.
+---
+
+## Overview
+
+Francisco Pina Comendador provides a comprehensive platform for creating, managing, and sharing project documentation. You gain access to powerful tools that streamline workflows, from initial document creation to team collaboration and exports. Focus on content while the platform handles organization and version history.
+
+<Callout kind="tip">
+  Begin by creating your first document to experience these features in action.
+</Callout>
+
+## Key Features
+
+Discover the core capabilities through these essential tools:
+
+<Columns cols={2}>
+  <Card title="Document Creation" icon="edit-3" href="#document-creation">
+    Build rich documents with Markdown, MDX components, and embeds.
+  </Card>
+  <Card title="Version Control" icon="git-branch" href="#version-control">
+    Track changes with Git-like history and branching.
+  </Card>
+  <Card title="Team Collaboration" icon="users" href="#collaboration">
+    Enable real-time editing and comments for seamless teamwork.
+  </Card>
+  <Card title="Search & Organization" icon="search" href="#search">
+    Find content quickly with advanced search and tagging.
+  </Card>
+  <Card title="Export & Sharing" icon="share-2" href="#export">
+    Generate PDFs, HTML sites, or share links effortlessly.
+  </Card>
+</Columns>
+
+## Document Creation and Editing
+
+Jump into document creation with an intuitive editor supporting Markdown and MDX.
+
+<Steps>
+  <Step title="Create New Document" icon="plus">
+    Click the `New Document` button and select a template.
+  </Step>
+  <Step title="Edit Content" icon="edit">
+    Use the WYSIWYG editor or switch to source mode for MDX.
+  </Step>
+  <Step title="Add Components" icon="components">
+    Insert `<Callout>`, `<Tabs>`, or code blocks directly.
+  </Step>
+</Steps>
+
+```mdx
+# My Project Doc
+
+## Introduction
+
+<Callout kind="info">
+  This is your starting point.
+</Callout>
+```
+
+## Version Control for Docs
+
+Maintain document integrity with built-in version control. You commit changes, view diffs, and revert as needed.
+
+<CodeGroup tabs="CLI,API">
+  ````bash
+  # Commit changes
+  fpcd commit -m "Add collaboration section"
+  
+  # View history
+  fpcd log --pretty=oneline
+  ````
+
+  ```javascript
+  // API commit
+  await fetch('https://api.example.com/docs/commit', {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${YOUR_API_KEY}` },
+    body: JSON.stringify({
+      docId: 'proj-123',
+      message: 'Update features'
+    })
+  });
+  ```
+</CodeGroup>
+
+<Expandable title="Advanced Branching" default-open="false">
+  Create branches for experiments:
+
+  | Action | Command |
+  |--------|---------|
+  | Create branch | `fpcd branch feature/export` |
+  | Switch branch | `fpcd checkout feature/export` |
+  | Merge | `fpcd merge feature/export` |
+</Expandable>
+
+## Collaboration Features for Teams
+
+Invite team members and collaborate in real-time. Assign roles like editor or viewer.
+
+<Tabs>
+  <Tab title="Real-time Editing" icon="edit-3">
+    Multiple users edit simultaneously with live cursors and conflict resolution.
+  </Tab>
+  <Tab title="Comments & Reviews" icon="message-circle">
+    Add inline comments and `@mention` teammates for feedback.
+  </Tab>
+</Tabs>
+
+<Callout kind="success">
+  Changes sync instantly, reducing merge conflicts.
+</Callout>
+
+## Search and Organization Options
+
+Organize docs with tags, folders, and powerful search.
+
+- Use `tags={["api", "guide"]}` for categorization.
+- Full-text search supports fuzzy matching and filters.
+
+## Export and Sharing Functionalities
+
+Share your docs widely. Export to multiple formats or generate shareable links.
+
+<Tabs>
+  <Tab title="PDF Export" icon="file-text">
+    ```bash
+    fpcd export proj-123 --format=pdf --output=docs.pdf
+    ```
+  </Tab>
+  <Tab title="HTML Site" icon="globe">
+    Deploy a static site to `https://docs.example.com/your-project`.
+  </Tab>
+  <Tab title="Share Link" icon="link">
+    Generate public or password-protected links instantly.
+  </Tab>
+</Tabs>
+
+These features empower you to manage project documentation efficiently. Start with document creation and scale to full team workflows.
